@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1000, maximum-scale=1.0, user-scalable=yes">
+  <title>10k · 20k · 30k with JSON loader</title>
+  <!-- Lottie Web library (lightweight) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <style>
+    /* modern reset & base – exactly as you liked */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f0f4fa 0%, #d9e2ef 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 1rem;
+    }
+
+    /* main card – holds the three buttons */
+    .button-panel {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 4rem;
+      box-shadow: 0 30px 60px -20px rgba(0,20,40,0.3), 0 0 0 1px rgba(255,255,255,0.5) inset;
+      padding: 2rem 2.5rem;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    /* professional buttons */
+    .image-btn {
+      border: none;
+      background: white;
+      font-size: 2.4rem;
+      font-weight: 600;
+      padding: 1.2rem 3.2rem;
+      border-radius: 5rem;
+      box-shadow: 0 15px 25px -10px rgba(0,20,40,0.2), 0 0 0 1px rgba(0,0,0,0.05);
+      color: #0b1e2e;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: -0.02em;
+      min-width: 200px;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    #btn10k {
+      background: #fef4e0;
+      box-shadow: 0 15px 25px -12px #b45309, 0 0 0 1px #fde68a inset;
+    }
+
+    #btn20k {
+      background: #e3edfe;
+      box-shadow: 0 15px 25px -12px #1e3a8a, 0 0 0 1px #b9d3f8 inset;
+    }
+
+    #btn30k {
+      background: #f0e0fe;  /* light purple for distinction */
+      box-shadow: 0 15px 25px -12px #6b21a8, 0 0 0 1px #d8b4fe inset;
+    }
+
+    .image-btn:hover {
+      transform: scale(1.02);
+      filter: brightness(1.02);
+      box-shadow: 0 22px 30px -14px #1e293b;
+    }
+
+    .image-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* fullscreen overlay – shows lottie first, then image */
+    .fullscreen-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;  /* pure black background */
+      display: none;      /* hidden by default */
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: pointer;    /* click anywhere to close */
+    }
+
+    /* container for lottie animation */
+    #lottie-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+
+    /* image once loaded */
+    .fullscreen-overlay img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .button-panel { padding: 1.5rem; gap: 1rem; }
+      .image-btn { font-size: 2rem; padding: 1rem 2rem; min-width: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="button-panel">
+    <button class="image-btn" id="btn10k">10k</button>
+    <button class="image-btn" id="btn20k">20k</button>
+    <button class="image-btn" id="btn30k">30k</button>
+  </div>
+
+  <!-- fullscreen overlay: contains lottie container and will also hold image -->
+  <div id="overlay" class="fullscreen-overlay" onclick="closeFullscreen()">
+    <div id="lottie-container"></div>
+    <!-- image will be inserted here dynamically -->
+  </div>
+
+  <script>
+    (function() {
+      const overlay = document.getElementById('overlay');
+      const lottieContainer = document.getElementById('lottie-container');
+      const btn10k = document.getElementById('btn10k');
+      const btn20k = document.getElementById('btn20k');
+      const btn30k = document.getElementById('btn30k');
+
+      // high-quality image URLs (exactly as given)
+      const IMG_10K = 'https://i.ibb.co/hxtq6LLK/a53f276da02b.webp';
+      const IMG_20K = 'https://i.ibb.co/tTQnwxvR/ae07ab3200c5.webp';
+      const IMG_30K = 'https://i.ibb.co/xS2BjcTJ/60ec67811513.webp';
+
+      // Lottie animation instance
+      let lottieInstance = null;
+
+      // JSON animation path – you can replace with your own 'animation.json' or any public URL
+      const LOTTIE_JSON_URL = 'https://assets2.lottiefiles.com/packages/lf20_p8bfn5kz.json'; // smooth circular loader
+
+      // function to start lottie animation inside the overlay
+      function startLottie() {
+        // clear any previous content, but keep lottieContainer
+        overlay.innerHTML = ''; 
+        overlay.appendChild(lottieContainer);
+        lottieContainer.style.display = 'flex';
+
+        // destroy previous lottie instance if any
+        if (lottieInstance) {
+          lottieInstance.destroy();
+          lottieInstance = null;
+        }
+
+        // load new lottie animation
+        lottieInstance = lottie.loadAnimation({
+          container: lottieContainer,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: LOTTIE_JSON_URL
+        });
+      }
+
+      // function to load image in background, replace lottie on success
+      function loadImageInBackground(src) {
+        const img = new Image();
+        img.src = src;
+        img.alt = 'fullscreen image';
+        img.style.display = 'none'; // hidden while loading
+        overlay.appendChild(img);    // start loading
+
+        img.onload = () => {
+          // stop lottie
+          if (lottieInstance) {
+            lottieInstance.destroy();
+            lottieInstance = null;
+          }
+          // clear overlay and show image
+          overlay.innerHTML = '';
+          img.style.display = 'block';
+          overlay.appendChild(img);
+        };
+
+        img.onerror = () => {
+          // image failed – keep lottie playing (graceful fallback)
+          console.warn('image failed to load, keeping lottie animation');
+          // remove the hidden image
+          if (img.parentNode) img.parentNode.removeChild(img);
+        };
+      }
+
+      // open fullscreen with given image
+      function openFullscreen(imgUrl) {
+        overlay.style.display = 'flex';
+        startLottie();
+        loadImageInBackground(imgUrl);
+      }
+
+      // close overlay (click handler)
+      window.closeFullscreen = function() {
+        overlay.style.display = 'none';
+        // stop lottie
+        if (lottieInstance) {
+          lottieInstance.destroy();
+          lottieInstance = null;
+        }
+        // clear overlay and restore lottieContainer for next use
+        overlay.innerHTML = '';
+        overlay.appendChild(lottieContainer);
+      };
+
+      // attach click handlers
+      btn10k.addEventListener('click', () => openFullscreen(IMG_10K));
+      btn20k.addEventListener('click', () => openFullscreen(IMG_20K));
+      btn30k.addEventListener('click', () => openFullscreen(IMG_30K));
+
+      // close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.style.display === 'flex') {
+          closeFullscreen();
+        }
+      });
+
+      // ensure lottie container is present
+      if (!lottieContainer.parentNode) overlay.appendChild(lottieContainer);
+    })();
+  </script>
+</body>
+</html>

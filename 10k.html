@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Ranujha NOVELTY · beauty gift</title>
+  <!-- elegant fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: #fefaf5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      padding: 1.2rem;
+      position: relative;
+      overflow-x: hidden;
+      color: #1e293b;
+    }
+
+    /* navy decorations */
+    body::before {
+      content: "✦✦✦";
+      position: absolute;
+      top: 5%;
+      left: 8%;
+      font-size: 2.2rem;
+      color: #1e3a5f;
+      opacity: 0.15;
+      letter-spacing: 1rem;
+      transform: rotate(-8deg);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    body::after {
+      content: "✧✧✧";
+      position: absolute;
+      bottom: 8%;
+      right: 5%;
+      font-size: 3rem;
+      color: #1e3a5f;
+      opacity: 0.15;
+      transform: rotate(5deg);
+      pointer-events: none;
+    }
+
+    .sparkle {
+      position: absolute;
+      font-size: 1.2rem;
+      color: #1e3a5f;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .sparkle:nth-child(1) { top: 15%; left: 20%; }
+    .sparkle:nth-child(2) { top: 70%; left: 85%; transform: rotate(10deg); }
+    .sparkle:nth-child(3) { top: 40%; left: 10%; font-size: 2rem; opacity: 0.2; }
+    .sparkle:nth-child(4) { bottom: 20%; left: 25%; }
+    .sparkle:nth-child(5) { top: 80%; left: 40%; }
+
+    /* brand header - exact match to image */
+    .brand-header {
+      text-align: center;
+      margin-bottom: 1.2rem;
+      z-index: 10;
+      position: relative;
+    }
+
+    .logo-icon {
+      width: 85px;
+      height: 85px;
+      background: #1e3a5f;
+      border-radius: 50%;
+      margin: 0 auto 0.8rem;
+      box-shadow: 0 10px 20px rgba(30, 58, 95, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(255, 215, 175, 0.3);
+    }
+
+    .logo-icon span {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      font-weight: 900;
+      color: #f3e2d2;
+      line-height: 1;
+      margin-top: -5px;
+      letter-spacing: -2px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .shop-name {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+    }
+    .shop-name .ranujha {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #1e3a5f;
+      display: block;
+      margin-bottom: -0.4rem;
+      text-transform: none;
+    }
+    .shop-name .novelty {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 5.5px;
+      color: #9b8a78;
+      text-transform: uppercase;
+      display: inline-block;
+      padding-left: 0.4rem;
+      padding-right: 0.4rem;
+      word-spacing: 2px;
+    }
+
+    /* main grid - ensures perfect centering */
+    .poster-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      justify-items: center;
+      gap: 0.5rem 1.5rem;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0.5rem auto;
+      position: relative;
+      z-index: 15;
+    }
+
+    /* side beauty cards */
+    .side-left, .side-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease, transform 0.3s ease;
+    }
+
+    .beauty-item {
+      width: 110px;
+      height: 110px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 16px 28px -8px rgba(30, 58, 95, 0.18), 0 4px 10px rgba(0,0,0,0.02);
+      border: 2px solid rgba(255,255,255,0.9);
+      backdrop-filter: blur(2px);
+      transition: all 0.2s ease;
+      padding: 0.3rem;
+      position: relative;
+    }
+
+    .beauty-item img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      border: 1px solid #fff;
+    }
+
+    .beauty-item span {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: #1e3a5f;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+      background: #faf3ed;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-family: 'Montserrat', sans-serif;
+      white-space: nowrap;
+    }
+
+    /* gift center - perfectly centered */
+    .gift-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      width: 100%;
+      position: relative;
+      text-align: center;
+    }
+
+    #gift {
+      font-size: clamp(140px, 30vw, 240px);
+      line-height: 1;
+      cursor: pointer;
+      display: inline-block;
+      transform-origin: center center;
+      filter: drop-shadow(0 16px 24px rgba(30,58,95,0.12));
+      text-shadow: 2px 8px 16px rgba(0,0,0,0.05);
+      z-index: 20;
+      position: relative;
+      transition: transform 0.2s;
+      will-change: transform;
+    }
+
+    /* Shake animation - stays centered */
+    #gift.shake {
+      animation: shake 0.3s ease-in-out;
+    }
+
+    @keyframes shake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(15deg); }
+      50% { transform: rotate(-15deg); }
+      75% { transform: rotate(8deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    #gift.scale-up {
+      transform: scale(1.2) !important;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* tear overlay */
+    .tear-line {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 0;
+      z-index: 30;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgba(255,255,240,0.8));
+      transition: height 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+      overflow: visible;
+    }
+
+    .tear-line svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .tear-line path {
+      stroke: #ffffff;
+      stroke-width: 3px;
+      fill: none;
+      filter: drop-shadow(0 0 4px #fff9e6);
+    }
+
+    /* explosion burst */
+    .burst {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,240,180,1) 0%, rgba(255,200,100,0.8) 40%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 30;
+      animation: burstFlash 0.4s ease-out forwards;
+    }
+
+    @keyframes burstFlash {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+      30% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(2.5); }
+    }
+
+    #heading {
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      color: #4b5e77;
+      background: rgba(255,250,240,0.7);
+      backdrop-filter: blur(4px);
+      padding: 0.4rem 1.6rem;
+      border-radius: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      border: 0.5px solid rgba(30,58,95,0.15);
+    }
+
+    #lottie-container {
+      width: min(320px, 70vw);
+      height: min(320px, 70vw);
+      margin: 1rem auto;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+      border-radius: 32px;
+    }
+
+    /* winner card - centered below shop name */
+    #result {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .winner-card {
+      background: white;
+      border-radius: 36px;
+      padding: 1.5rem;
+      box-shadow: 0 30px 40px -15px rgba(30,58,95,0.3);
+      border: 1px solid rgba(255,255,240,0.7);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      animation: popWinner 0.6s cubic-bezier(0.21, 1.11, 0.38, 1.1);
+      margin: 0 auto;
+      max-width: 90vw;
+    }
+
+    .winner-card img {
+      width: 100%;
+      max-width: 400px;  /* larger image */
+      height: auto;
+      border-radius: 24px;
+      object-fit: cover;
+      border: 2px solid white;
+      background: #fafafa;
+    }
+
+    @keyframes popWinner {
+      0% { transform: scale(0.3); opacity: 0; }
+      80% { transform: scale(1.03); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    #winner {
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 600;
+      margin-top: 1.5rem;
+      display: none;
+      color: #1e3a5f;
+      letter-spacing: -0.5px;
+      font-family: 'Playfair Display', serif;
+      z-index: 15;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* hide side items, sparkles, heading when gift opened */
+    body.gift-opened .side-left,
+    body.gift-opened .side-right {
+      display: none;
+    }
+
+    body.gift-opened .sparkle {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    body.gift-opened #heading {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* confetti canvas */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    #gift:active {
+      transform: scale(0.95);
+      transition: transform 0.1s;
+    }
+
+    audio { display: none; }
+
+    @media (max-width: 640px) {
+      .poster-grid {
+        gap: 0.2rem;
+      }
+      .beauty-item {
+        width: 85px;
+        height: 85px;
+      }
+      .beauty-item img {
+        width: 55px;
+        height: 55px;
+      }
+      .beauty-item span {
+        font-size: 0.55rem;
+        padding: 0.1rem 0.4rem;
+      }
+      .shop-name .ranujha {
+        font-size: 2rem;
+      }
+      .shop-name .novelty {
+        font-size: 1.1rem;
+        letter-spacing: 4px;
+      }
+      .logo-icon {
+        width: 70px;
+        height: 70px;
+      }
+      .logo-icon span {
+        font-size: 2.6rem;
+      }
+      .winner-card img {
+        max-width: 300px;
+      }
+    }
+
+    /* ---------- ADDED FIX: center winner image directly below shop name ---------- */
+    body.gift-opened .poster-grid {
+      margin-top: 0;
+      gap: 0;
+    }
+    body.gift-opened .gift-center {
+      margin: 0;
+      padding: 0;
+    }
+    body.gift-opened #result {
+      margin-top: 0;
+    }
+    body.gift-opened #winner {
+      margin-top: 20px; /* small space between image and text */
+    }
+    /* ---------- ADDITIONAL FIX FOR PERFECT HORIZONTAL CENTERING ---------- */
+    body.gift-opened .poster-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+
+  <div class="sparkle">✦</div>
+  <div class="sparkle">✧</div>
+  <div class="sparkle">★</div>
+  <div class="sparkle">☆</div>
+  <div class="sparkle">✨</div>
+
+  <div class="brand-header">
+    <div class="logo-icon">
+      <span>R</span>
+    </div>
+    <div class="shop-name">
+      <span class="ranujha">Ranujha</span>
+      <span class="novelty">NOVELTY</span>
+    </div>
+  </div>
+
+  <div class="poster-grid">
+    <!-- LEFT side -->
+    <div class="side-left">
+      <div class="beauty-item">
+        <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=150&h=150&fit=crop" alt="Lipstick" loading="lazy">
+        <span>lipstick</span>
+      </div>
+      <div class="beauty-item">
+        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=150&h=150&fit=crop" alt="Palette" loading="lazy">
+        <span>palette</span>
+      </div>
+      <div class="beauty-item">
+        <img src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?w=150&h=150&fit=crop" alt="Hair spray" loading="lazy">
+        <span>hair spray</span>
+      </div>
+    </div>
+
+    <!-- center gift column -->
+    <div class="gift-center">
+      <h2 id="heading">✨ tap the gift ✨</h2>
+      <div id="gift" onclick="handleGiftTap()">🎁</div>
+      <!-- tear overlay positioned exactly over gift -->
+      <div class="tear-line" id="tearLine" style="height:0;">
+        <svg viewBox="0 0 20 200" preserveAspectRatio="none">
+          <path d="M10,0 L8,15 L12,30 L7,45 L13,60 L8,75 L12,90 L6,105 L14,120 L9,135 L11,150 L5,165 L15,180 L8,200" vector-effect="non-scaling-stroke"/>
+        </svg>
+      </div>
+      <div id="lottie-container"></div>
+      <div id="result"></div>
+      <div id="winner">🎉 Congratulations! You Won 🎉</div>
+    </div>
+
+    <!-- RIGHT side -->
+    <div class="side-right">
+      <div class="beauty-item">
+        <img src="https://images.unsplash.com/photo-1631730359585-38a4935cbec4?w=150&h=150&fit=crop" alt="Eyelashes" loading="lazy">
+        <span>eyelashes</span>
+      </div>
+      <div class="beauty-item">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=150&h=150&fit=crop" alt="Cosmetic kit" loading="lazy">
+        <span>cosmetic kit</span>
+      </div>
+      <div class="beauty-item">
+        <img src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=150&h=150&fit=crop" alt="Foundation" loading="lazy">
+        <span>foundation</span>
+      </div>
+    </div>
+  </div>
+
+  <audio id="giftSound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-game-level-completed-2059.mp3" type="audio/mpeg">
+  </audio>
+
+  <canvas id="confettiCanvas"></canvas>
+
+  <script>
+    (function() {
+      const gift = document.getElementById('gift');
+      const heading = document.getElementById('heading');
+      const resultDiv = document.getElementById('result');
+      const winnerDiv = document.getElementById('winner');
+      const sound = document.getElementById('giftSound');
+      const canvas = document.getElementById('confettiCanvas');
+      const lottieContainer = document.getElementById('lottie-container');
+      const giftCenter = document.querySelector('.gift-center');
+      const tearLine = document.getElementById('tearLine');
+      
+      let isOpened = false;
+      let confettiActive = false;
+      let pieces = [];
+      let animationFrame = null;
+      let lottieInstance = null;
+
+      const giftImages = [
+        'https://i.ibb.co/8nfW4Y7L/36b58fd4489d.webp',
+        'https://i.ibb.co/msYBt8X/4a0770d7b66a.webp',
+        'https://i.ibb.co/TqxrLRb6/5a1f308dd2d5.webp',
+        'https://i.ibb.co/1tn8SJCP/bb8502cd7cfa.webp',
+        'https://i.ibb.co/BHGvD4jW/b5d7962b2493.webp',
+        'https://i.ibb.co/JFWPJswm/ab5e4a10b95d.webp',
+        'https://i.ibb.co/tphvF5cM/53d681bcc24f.webp',
+        'https://i.ibb.co/pjbcmGkf/7859252d5ec5.webp',
+        'https://i.ibb.co/CKKcP62M/3f51d45c6de6.webp',
+        'https://i.ibb.co/7xLjnwHH/b2431305407e.webp',
+        'https://i.ibb.co/LzvLyL3w/bcec7792c76b.webp',
+        'https://i.ibb.co/gMJDkpfk/e5cfcbce3185.webp',
+        'https://i.ibb.co/rPDRHfk/713ec7df42d2.webp'
+      ];
+
+      function initConfetti(width, height) {
+        const newPieces = [];
+        for (let i = 0; i < 180; i++) {
+          newPieces.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: Math.random() * 6 + 3,
+            speedY: Math.random() * 3 + 2,
+            color: `hsl(${Math.random() * 360}, 85%, 65%)`,
+            angle: Math.random() * Math.PI * 2,
+          });
+        }
+        return newPieces;
+      }
+
+      function startConfetti() {
+        if (confettiActive) return;
+        confettiActive = true;
+
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
+        pieces = initConfetti(w, h);
+
+        function drawConfetti() {
+          if (!confettiActive) return;
+
+          const currentW = window.innerWidth;
+          const currentH = window.innerHeight;
+          
+          if (canvas.width !== currentW || canvas.height !== currentH) {
+            canvas.width = currentW;
+            canvas.height = currentH;
+            pieces.forEach(p => {
+              p.x = (p.x / canvas.width) * currentW || Math.random() * currentW;
+              p.y = (p.y / canvas.height) * currentH || Math.random() * currentH;
+            });
+          }
+
+          const ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = 0; i < pieces.length; i++) {
+            const p = pieces[i];
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+            ctx.shadowColor = 'rgba(255,255,255,0.5)';
+            ctx.shadowBlur = 4;
+            
+            p.y += p.speedY * 0.6;
+            p.x += Math.sin(p.angle) * 0.4;
+            p.angle += 0.02;
+
+            if (p.y > canvas.height + 20) {
+              p.y = -20;
+              p.x = Math.random() * canvas.width;
+            }
+            if (p.x > canvas.width + 20) p.x = -20;
+            if (p.x < -20) p.x = canvas.width + 20;
+          }
+
+          animationFrame = requestAnimationFrame(drawConfetti);
+        }
+
+        drawConfetti();
+      }
+
+      window.addEventListener('resize', () => {
+        if (confettiActive) {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+      });
+
+      window.handleGiftTap = function() {
+        if (isOpened) return;
+        isOpened = true;
+
+        if (sound) {
+          sound.play().catch(e => console.log('audio play error', e));
+        }
+
+        // STEP 1: shake
+        gift.classList.add('shake');
+
+        // STEP 2: tear effect
+        setTimeout(() => {
+          gift.classList.remove('shake');
+          const giftHeight = gift.offsetHeight;
+          tearLine.style.height = giftHeight + 'px';
+        }, 300);
+
+        // STEP 3: scale up
+        setTimeout(() => {
+          gift.classList.add('scale-up');
+        }, 650);
+
+        // STEP 4: explosion burst and confetti
+        setTimeout(() => {
+          const burst = document.createElement('div');
+          burst.className = 'burst';
+          giftCenter.appendChild(burst);
+          startConfetti();
+          setTimeout(() => {
+            if (burst.parentNode) burst.remove();
+          }, 400);
+        }, 850);
+
+        // STEP 5 & 6: gift disappears, lottie appears, and hide side items
+        setTimeout(() => {
+          gift.style.display = 'none';
+          heading.style.display = 'none';
+          tearLine.style.height = '0';
+          
+          // Now hide side items and sparkles
+          document.body.classList.add('gift-opened');
+          
+          lottieContainer.style.display = 'flex';
+          
+          if (!lottieInstance) {
+            lottieInstance = lottie.loadAnimation({
+              container: lottieContainer,
+              renderer: 'svg',
+              loop: true,
+              autoplay: true,
+              path: 'animation.json'
+            });
+          }
+
+          const randomIndex = Math.floor(Math.random() * giftImages.length);
+          const imgUrl = giftImages[randomIndex];
+
+          const preloadImg = new Image();
+          preloadImg.src = imgUrl;
+
+          preloadImg.onload = function() {
+            if (lottieInstance) {
+              lottieInstance.destroy();
+              lottieInstance = null;
+            }
+            lottieContainer.style.display = 'none';
+            resultDiv.innerHTML = `<div class="winner-card"><img src="${imgUrl}" alt="random gift" /></div>`;
+            winnerDiv.style.display = 'block';
+          };
+
+          preloadImg.onerror = function() {
+            if (lottieInstance) {
+              lottieInstance.destroy();
+              lottieInstance = null;
+            }
+            lottieContainer.style.display = 'none';
+            resultDiv.innerHTML = `<div class="winner-card"><img src="${giftImages[0]}" alt="fallback gift" /></div>`;
+            winnerDiv.style.display = 'block';
+          };
+        }, 1250);
+      };
+
+      window.addEventListener('load', function() {
+        isOpened = false;
+        document.body.classList.remove('gift-opened');
+        gift.style.display = 'inline-block';
+        heading.style.display = 'block';
+        resultDiv.innerHTML = '';
+        winnerDiv.style.display = 'none';
+        gift.classList.remove('shake', 'scale-up', 'open');
+        tearLine.style.height = '0';
+        lottieContainer.style.display = 'none';
+        
+        if (lottieInstance) {
+          lottieInstance.destroy();
+          lottieInstance = null;
+        }
+        
+        if (confettiActive) {
+          confettiActive = false;
+          if (animationFrame) {
+            cancelAnimationFrame(animationFrame);
+            animationFrame = null;
+          }
+          const ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+        confettiActive = false;
+      });
+
+      window.addEventListener('beforeunload', () => {
+        if (animationFrame) {
+          cancelAnimationFrame(animationFrame);
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>
