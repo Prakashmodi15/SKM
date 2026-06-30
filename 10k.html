@@ -43,14 +43,15 @@ html, body {
 
 /* ============================================
    GIFT BOX CLICKABLE AREA
-   Positioned exactly over the empty space
+   Centered responsive positioning
    ============================================ */
 #gift-click-area {
     position: absolute;
-    left: 28%;
-    top: 52%;
-    width: 44%;
-    height: 24%;
+    left: 50%;
+    top: 58%;
+    transform: translate(-50%, -50%);
+    width: clamp(180px, 55vw, 380px);
+    height: clamp(180px, 30vh, 380px);
     cursor: pointer;
     z-index: 10;
     display: flex;
@@ -59,12 +60,13 @@ html, body {
 }
 
 /* ============================================
-   CSS GIFT BOX - BIGGER SIZE 220x220
+   CSS GIFT BOX - RESPONSIVE PREMIUM SIZE
+   40-60% bigger than before
    ============================================ */
 .gift-box-wrapper {
     position: relative;
-    width: 220px;
-    height: 220px;
+    width: clamp(200px, 52vw, 360px);
+    height: clamp(200px, 52vw, 360px);
     animation: giftBoxFloat 3s ease-in-out infinite;
 }
 
@@ -79,8 +81,8 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -40%);
-    width: 280px;
-    height: 280px;
+    width: 130%;
+    height: 130%;
     background: radial-gradient(circle, rgba(251, 191, 36, 0.25) 0%, rgba(251, 191, 36, 0.05) 50%, transparent 70%);
     border-radius: 50%;
     animation: glowPulse 3s ease-in-out infinite;
@@ -105,10 +107,10 @@ html, body {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 165px;
-    height: 124px;
+    width: 75%;
+    height: 56%;
     background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
-    border-radius: 10px;
+    border-radius: clamp(6px, 1.5vw, 12px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(220, 38, 38, 0.2), inset 0 2px 0 rgba(255, 255, 255, 0.1), inset 0 -2px 0 rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
@@ -119,7 +121,7 @@ html, body {
     left: 50%;
     top: 0;
     transform: translateX(-50%);
-    width: 33px;
+    width: 20%;
     height: 100%;
     background: linear-gradient(90deg, #d97706 0%, #fbbf24 30%, #fcd34d 50%, #fbbf24 70%, #d97706 100%);
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
@@ -132,20 +134,20 @@ html, body {
     left: 0;
     transform: translateY(-50%);
     width: 100%;
-    height: 33px;
+    height: 26%;
     background: linear-gradient(180deg, #d97706 0%, #fbbf24 30%, #fcd34d 50%, #fbbf24 70%, #d97706 100%);
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .gift-lid {
     position: absolute;
-    bottom: 121px;
+    bottom: 54%;
     left: 50%;
     transform: translateX(-50%);
-    width: 181px;
-    height: 44px;
+    width: 83%;
+    height: 20%;
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
-    border-radius: 8px 8px 5px 5px;
+    border-radius: clamp(5px, 1.2vw, 10px) clamp(5px, 1.2vw, 10px) clamp(3px, 0.8vw, 6px) clamp(3px, 0.8vw, 6px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
     z-index: 2;
     transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -158,14 +160,14 @@ html, body {
     left: 50%;
     top: 0;
     transform: translateX(-50%);
-    width: 36px;
+    width: 20%;
     height: 100%;
     background: linear-gradient(90deg, #d97706 0%, #fbbf24 30%, #fcd34d 50%, #fbbf24 70%, #d97706 100%);
 }
 
 .gift-bow {
     position: absolute;
-    bottom: 162px;
+    bottom: 72%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
@@ -174,32 +176,32 @@ html, body {
 .gift-bow::before, .gift-bow::after {
     content: '';
     position: absolute;
-    width: 38px;
-    height: 25px;
+    width: clamp(22px, 5.5vw, 42px);
+    height: clamp(14px, 3.5vw, 26px);
     background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
     border-radius: 50%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .gift-bow::before {
-    left: -19px;
+    left: clamp(-18px, -4.5vw, -34px);
     transform: rotate(-25deg);
     border-radius: 50% 50% 50% 10%;
 }
 
 .gift-bow::after {
-    right: -19px;
+    right: clamp(-18px, -4.5vw, -34px);
     transform: rotate(25deg);
     border-radius: 50% 50% 10% 50%;
 }
 
 .gift-bow-center {
     position: absolute;
-    bottom: 162px;
+    bottom: 72%;
     left: 50%;
     transform: translateX(-50%);
-    width: 19px;
-    height: 19px;
+    width: clamp(12px, 3vw, 22px);
+    height: clamp(12px, 3vw, 22px);
     background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
     border-radius: 50%;
     z-index: 4;
@@ -208,11 +210,11 @@ html, body {
 
 .gift-shadow {
     position: absolute;
-    bottom: -15px;
+    bottom: -8%;
     left: 50%;
     transform: translateX(-50%);
-    width: 138px;
-    height: 20px;
+    width: 60%;
+    height: 12%;
     background: radial-gradient(ellipse, rgba(0, 0, 0, 0.4) 0%, transparent 70%);
     border-radius: 50%;
     animation: shadowPulse 3s ease-in-out infinite;
@@ -225,11 +227,11 @@ html, body {
 
 .tap-hint {
     position: absolute;
-    bottom: -50px;
+    bottom: clamp(-55px, -12vw, -40px);
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
     font-weight: 700;
     color: #fbbf24;
     animation: tapPulse 2s ease-in-out infinite;
@@ -243,10 +245,9 @@ html, body {
 }
 
 /* ============================================
-   ANIMATION CLASSES
+   ANIMATION CLASSES - EXACTLY SAME
    ============================================ */
 
-/* Shake */
 .gift-shake {
     animation: giftShake 0.5s ease-in-out !important;
 }
@@ -264,14 +265,12 @@ html, body {
     90% { transform: translateY(-15px) rotate(-1deg); }
 }
 
-/* Lid open */
 .lid-open {
     transform: translateX(-50%) translateY(-80px) rotateX(-110deg) !important;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Box tear */
 .gift-tear {
     animation: giftTear 0.6s ease-in forwards !important;
 }
@@ -282,7 +281,6 @@ html, body {
     100% { transform: translateX(-50%) scale(0) rotate(15deg); opacity: 0; }
 }
 
-/* Golden flash */
 .golden-flash {
     position: fixed;
     inset: 0;
@@ -300,7 +298,7 @@ html, body {
 }
 
 /* ============================================
-   WINNER OVERLAY
+   WINNER OVERLAY - LARGER PREMIUM
    ============================================ */
 .winner-overlay {
     position: fixed;
@@ -312,7 +310,7 @@ html, body {
     display: none;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: clamp(12px, 4vw, 32px);
     opacity: 0;
     transition: opacity 0.5s ease;
 }
@@ -327,9 +325,9 @@ html, body {
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 28px;
-    padding: 32px 24px;
-    max-width: 360px;
+    border-radius: clamp(20px, 4vw, 36px);
+    padding: clamp(24px, 5vw, 48px) clamp(20px, 4vw, 40px);
+    max-width: min(92vw, 520px);
     width: 100%;
     text-align: center;
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -349,7 +347,7 @@ html, body {
     content: '';
     position: absolute;
     inset: -1px;
-    border-radius: 28px;
+    border-radius: inherit;
     padding: 1.5px;
     background: linear-gradient(135deg, rgba(251, 191, 36, 0.6) 0%, rgba(255, 255, 255, 0.1) 25%, rgba(251, 191, 36, 0.4) 50%, rgba(255, 255, 255, 0.1) 75%, rgba(251, 191, 36, 0.6) 100%);
     background-size: 300% 300%;
@@ -366,11 +364,16 @@ html, body {
     100% { background-position: 0% 50%; }
 }
 
+/* ============================================
+   GIFT IMAGE CONTAINER - LARGE & PREMIUM
+   85-90% of popup width
+   ============================================ */
 .winner-card .gift-image-container {
-    width: 220px;
-    height: 220px;
-    margin: 0 auto 20px;
-    border-radius: 20px;
+    width: 90%;
+    max-width: 420px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto clamp(16px, 3vw, 28px);
+    border-radius: clamp(14px, 3vw, 24px);
     overflow: hidden;
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -385,7 +388,7 @@ html, body {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 16px;
+    padding: clamp(8px, 2vw, 16px);
     transition: transform 0.5s ease;
     animation: imageReveal 0.8s ease-out;
 }
@@ -402,29 +405,30 @@ html, body {
     gap: 6px;
     background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(251, 191, 36, 0.05) 100%);
     border: 1px solid rgba(251, 191, 36, 0.3);
-    padding: 8px 20px;
+    padding: clamp(6px, 1.5vw, 10px) clamp(14px, 3vw, 24px);
     border-radius: 50px;
-    font-size: 0.85rem;
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
     font-weight: 700;
     color: #fcd34d;
-    margin-bottom: 12px;
+    margin-bottom: clamp(8px, 2vw, 16px);
     letter-spacing: 0.5px;
 }
 
 .winner-card .congrats-title {
     font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 3.5vw, 1.6rem);
     font-weight: 800;
     color: #ffffff;
-    margin-bottom: 8px;
+    margin-bottom: clamp(6px, 1.5vw, 12px);
     line-height: 1.3;
 }
 
 .winner-card .congrats-subtitle {
-    font-size: 0.85rem;
+    font-size: clamp(0.8rem, 2.2vw, 0.95rem);
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 24px;
+    margin-bottom: clamp(16px, 4vw, 32px);
     line-height: 1.5;
+    padding: 0 clamp(8px, 2vw, 16px);
 }
 
 .winner-card .claim-btn {
@@ -433,14 +437,14 @@ html, body {
     justify-content: center;
     gap: 8px;
     width: 100%;
-    padding: 16px 24px;
+    padding: clamp(14px, 3.5vw, 20px) clamp(20px, 4vw, 32px);
     background: linear-gradient(135deg, #d97706 0%, #fbbf24 50%, #fcd34d 100%);
     background-size: 200% 200%;
     animation: gradientShift 3s ease infinite;
     color: #0a0e27;
     border: none;
-    border-radius: 16px;
-    font-size: 1rem;
+    border-radius: clamp(12px, 2.5vw, 18px);
+    font-size: clamp(0.95rem, 2.8vw, 1.15rem);
     font-weight: 800;
     font-family: 'Noto Sans Devanagari', sans-serif;
     cursor: pointer;
@@ -462,15 +466,15 @@ html, body {
 
 .winner-card .close-btn {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 36px;
-    height: 36px;
+    top: clamp(10px, 2.5vw, 18px);
+    right: clamp(10px, 2.5vw, 18px);
+    width: clamp(32px, 7vw, 44px);
+    height: clamp(32px, 7vw, 44px);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: rgba(255, 255, 255, 0.7);
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -486,8 +490,8 @@ html, body {
 
 /* Loading spinner */
 .loader {
-    width: 50px;
-    height: 50px;
+    width: clamp(40px, 10vw, 60px);
+    height: clamp(40px, 10vw, 60px);
     border: 3px solid rgba(251, 191, 36, 0.2);
     border-top-color: #fbbf24;
     border-radius: 50%;
@@ -527,27 +531,97 @@ body {
     -webkit-touch-callout: none;
 }
 
-/* Responsive */
-@media (max-width: 380px) {
-    .gift-box-wrapper { width: 180px; height: 180px; }
-    .gift-box-body { width: 135px; height: 101px; }
-    .gift-lid { width: 148px; height: 36px; bottom: 99px; }
-    .gift-bow { bottom: 132px; }
-    .gift-bow::before, .gift-bow::after { width: 32px; height: 21px; }
-    .gift-bow-center { bottom: 132px; width: 16px; height: 16px; }
-    .gift-shadow { width: 113px; }
-    .tap-hint { font-size: 0.8rem; bottom: -42px; }
+/* ============================================
+   LANDSCAPE RESPONSIVE
+   ============================================ */
+@media (orientation: landscape) and (max-height: 500px) {
+    #gift-click-area {
+        top: 55%;
+        width: clamp(160px, 35vh, 280px);
+        height: clamp(160px, 35vh, 280px);
+    }
+    .gift-box-wrapper {
+        width: clamp(160px, 32vh, 260px);
+        height: clamp(160px, 32vh, 260px);
+    }
+    .tap-hint {
+        font-size: 0.75rem;
+        bottom: -40px;
+    }
+    .winner-card {
+        max-width: min(80vw, 450px);
+        padding: 20px;
+    }
+    .winner-card .gift-image-container {
+        width: 70%;
+        max-width: 280px;
+    }
 }
 
-@media (max-height: 700px) {
-    .gift-box-wrapper { width: 180px; height: 180px; }
-    .gift-box-body { width: 135px; height: 101px; }
-    .gift-lid { width: 148px; height: 36px; bottom: 99px; }
-    .gift-bow { bottom: 132px; }
-    .gift-bow::before, .gift-bow::after { width: 32px; height: 21px; }
-    .gift-bow-center { bottom: 132px; width: 16px; height: 16px; }
-    .gift-shadow { width: 113px; }
+/* ============================================
+   VERY SMALL SCREENS
+   ============================================ */
+@media (max-width: 360px) {
+    .gift-box-wrapper {
+        width: clamp(170px, 48vw, 200px);
+        height: clamp(170px, 48vw, 200px);
+    }
+    .tap-hint {
+        font-size: 0.8rem;
+    }
+    .winner-card {
+        padding: 20px 16px;
+    }
 }
+
+/* ============================================
+   TABLET & DESKTOP
+   ============================================ */
+@media (min-width: 768px) {
+    #gift-click-area {
+        width: clamp(280px, 38vw, 400px);
+        height: clamp(280px, 38vw, 400px);
+    }
+    .gift-box-wrapper {
+        width: clamp(260px, 35vw, 380px);
+        height: clamp(260px, 35vw, 380px);
+    }
+    .winner-card {
+        max-width: 500px;
+        padding: 40px;
+    }
+    .winner-card .gift-image-container {
+        max-width: 400px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #gift-click-area {
+        width: clamp(320px, 30vw, 450px);
+        height: clamp(320px, 30vw, 450px);
+    }
+    .gift-box-wrapper {
+        width: clamp(300px, 28vw, 420px);
+        height: clamp(300px, 28vw, 420px);
+    }
+    .winner-card {
+        max-width: 560px;
+    }
+    .winner-card .gift-image-container {
+        max-width: 460px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+::-webkit-scrollbar { width: 0; height: 0; }
+body { scrollbar-width: none; }
 </style>
 </head>
 <body>
